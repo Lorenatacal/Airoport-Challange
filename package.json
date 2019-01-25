@@ -1,0 +1,19 @@
+{
+  "name": "airport-challange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Airport.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lorenatacal/Airoport-Challange.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lorenatacal/Airoport-Challange/issues"
+  },
+  "homepage": "https://github.com/Lorenatacal/Airoport-Challange#readme"
+}

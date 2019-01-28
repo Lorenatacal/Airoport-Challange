@@ -1,8 +1,10 @@
-var functions = require('./Airport.js');
-const addPlane = functions.addPlane;
+const addPlane = require('./Airport.js').addPlane;
+const airport = require('./Airport.js').airport;
+const plane = require('./Airport.js').plane;
 
 describe("Airport", () => {
     test("addPlane() should add a new plane in the airport", () => {
-        expect(addPlane().length).toEqual(1);
+        addPlane(airport, plane);
+        expect(airport.length).toEqual(1);
     });
 });

@@ -1,12 +1,12 @@
 let airport = [];
-let plane = '';
+let plane = {};
 
-function addPlane(airport, plane) {
+function land(airport, plane) {
     return airport.push(plane);
 }
 
 module.exports = {
     plane,
     airport,
-    addPlane,
+    land,
 }

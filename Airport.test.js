@@ -1,7 +1,8 @@
 var functions = require('./Airport.js');
+const addPlane = functions.addPlane;
 
 describe("Airport", () => {
     test("addPlane() should add a new plane in the airport", () => {
-        expect(airport).//ro have one element
-    })
+        expect(addPlane().length).toEqual(1)
+    });
 });

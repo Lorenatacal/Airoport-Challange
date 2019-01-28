@@ -1,1 +1,10 @@
-console.log(1+1)
+airport = [];
+plane = '';
+
+function addPlane() {
+    return airport = airport.push(plane);
+}
+
+module.exports = {
+    addPlane
+}

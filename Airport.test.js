@@ -12,9 +12,12 @@ describe("Airport", () => {
         let plane = {};
         let plane1 = {};
         let plane2 = {};
+        let consoleSpy = jest.spyOn(console, 'log')
         let airportLondon = [plane, plane1, plane2];
+
         takeOff(airportLondon, plane);
         takeOff(airportLondon, plane2);
         expect(airportLondon.length).toEqual(1);
+        expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
     })
 });

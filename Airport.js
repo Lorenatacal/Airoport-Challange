@@ -5,6 +5,7 @@ function land(airport, plane) {
 }
 
 function takeOff(airport) {
+    console.log('The plane has left');
     return airport.shift();
 }
 

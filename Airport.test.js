@@ -15,13 +15,13 @@ describe("Airport", () => {
         let consoleSpy = jest.spyOn(console, 'log')
         let airportLondon = [plane, plane1, plane2];
 
-        takeOff(airportLondon, plane);
-        takeOff(airportLondon, plane2);
+        takeOff(airportLondon);
+        takeOff(airportLondon);
         expect(airportLondon.length).toEqual(1);
         expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
     })
-    test('takeOff() should not be called when the weather is stormy', () => {
-        let weather = 'stormy'
+    test('takeOff() should not allow plane to takeOff when the weather is stormy', () => {
+        let weather = 'stormy';
         let plane = {};
         let plane1 = {};
         let plane2 = {};

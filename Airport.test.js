@@ -5,8 +5,18 @@ describe("Airport", () => {
     test('land() should add a new plane in the airport', () => {
         let airportLuton = [];
         let plane = {};
+
         land(airportLuton, plane);
         expect(airportLuton.length).toEqual(1);
+    });
+    test('land() should not allow a plane to land when the weather is stormy', () => {
+        let weather = 'stormy'
+        let airportLuton = [];
+        let plane = {};
+        let consoleSpy = jest.spyOn(console, 'log');
+
+        land(airportLuton, plane, weather);
+        expect(consoleSpy).toHaveBeenCalledWith('The weather is stormy, we wont land')
     });
     test('takeOff() should confirm when a plane takes off the airport', () => {
         let plane = {};

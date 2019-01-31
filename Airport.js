@@ -3,6 +3,8 @@ let airport = [];
 function land(airport, plane, weather, fullCapacity) {
     if (weather === 'stormy') {
         console.log('The weather is stormy, we wont land')
+    } else if (airport.length === fullCapacity){
+        console.log('We wont land, the airport is full')
     } else {
         return airport.push(plane);
     }

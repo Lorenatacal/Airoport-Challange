@@ -9,6 +9,20 @@ describe("Airport", () => {
         land(airportLuton, plane);
         expect(airportLuton.length).toEqual(1);
     });
+    test('land() should not allow a plane to land when the airport is full', () => {
+        let weather = '';
+        let fullCapacity = 5;
+        let plane = {};
+        let plane1 = {};
+        let plane2 = {};
+        let plane3 = {};
+        let plane4 = {};
+        let airportLuton = [plane, plane1, plane2, plane3, plane4];
+        let consoleSpy = jest.spyOn(console, 'log')
+
+        land(airportLuton, plane, weather, fullCapacity);
+        expect(consoleSpy).toHaveBeenCalledWith('We wont land, the airport is full');
+    })
     test('land() should not allow a plane to land when the weather is stormy', () => {
         let weather = 'stormy'
         let airportLuton = [];

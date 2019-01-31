@@ -1,6 +1,6 @@
 let airport = [];
 
-function land(airport, plane, weather) {
+function land(airport, plane, weather, fullCapacity) {
     if (weather === 'stormy') {
         console.log('The weather is stormy, we wont land')
     } else {

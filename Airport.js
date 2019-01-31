@@ -1,7 +1,11 @@
 let airport = [];
 
-function land(airport, plane) {
-    return airport.push(plane);
+function land(airport, plane, weather) {
+    if (weather === 'stormy') {
+        console.log('The weather is stormy, we wont land')
+    } else {
+        return airport.push(plane);
+    }
 }
 
 function takeOff(airport, weather) {

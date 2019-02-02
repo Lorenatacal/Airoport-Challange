@@ -1,5 +1,6 @@
 const land = require('./Airport.js').land;
 const takeOff = require('./Airport.js').takeOff;
+const randomWeather = require('./Airport.js').randomWeather;
 
 describe("Airport", () => {
     test('land() should add a new plane in the airport', () => {
@@ -59,4 +60,15 @@ describe("Airport", () => {
         takeOff(airportLondon, randomWeather);
         expect(consoleSpy).toHaveBeenCalledWith('It is stormy, we wont depart')
     })
+    describe('randomWeather()', () => {
+        test('should return sunny when Math.random returns 0.9', () => {
+            let weather = ['stormy', 'sunny', 'sunny', 'sunny'];
+            let randomSpy = jest.spyOn(Math, 'random').mockImplementation(() => 0.9);
+            let weatherCondition = randomWeather(weather);
+    
+            expect(randomSpy).toHaveBeenCalled();
+            expect(weatherCondition).toEqual('sunny');
+        })
+    });
+   
 });

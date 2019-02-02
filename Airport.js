@@ -2,7 +2,8 @@ let airport = [];
 let weather = ['stormy', 'sunny', 'sunny', 'sunny'];
 
 function randomWeather(weather) {
-    return weather[Math.floor(Math.random()*weather.length)];
+    const index = Math.random()*weather.length;
+    return weather[Math.floor(index)];
 }
 
 function land(airport, plane, randomWeather, fullCapacity) {
@@ -28,4 +29,5 @@ module.exports = {
     airport,
     land,
     takeOff,
+    randomWeather,
 }

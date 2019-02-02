@@ -1,7 +1,12 @@
 let airport = [];
+let weather = ['stormy', 'sunny', 'sunny', 'sunny'];
 
-function land(airport, plane, weather, fullCapacity) {
-    if (weather === 'stormy') {
+function randomWeather(weather) {
+    return weather[Math.floor(Math.random()*weather.length)];
+}
+
+function land(airport, plane, randomWeather, fullCapacity) {
+    if (randomWeather(weather) === 'stormy') {
         console.log('The weather is stormy, we wont land')
     } else if (airport.length === fullCapacity){
         console.log('We wont land, the airport is full')
@@ -10,8 +15,8 @@ function land(airport, plane, weather, fullCapacity) {
     }
 }
 
-function takeOff(airport, weather) {
-    if (weather === 'stormy') {
+function takeOff(airport, randomWeather) {
+    if (randomWeather(weather) === 'stormy') {
         console.log('It is stormy, we wont depart');
     } else {
         console.log('The plane has left');

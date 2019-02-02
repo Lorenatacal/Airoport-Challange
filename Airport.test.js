@@ -68,7 +68,14 @@ describe("Airport", () => {
     
             expect(randomSpy).toHaveBeenCalled();
             expect(weatherCondition).toEqual('sunny');
+        });
+        test('should return stormy when Math.random returns 0', () => {
+            let weather = ['stormy', 'sunny', 'sunny', 'sunny'];
+            let randomSpy = jest.spyOn(Math, 'random').mockImplementation(() => 0);
+            let weatherCondition = randomWeather(weather);
+    
+            expect(randomSpy).toHaveBeenCalled();
+            expect(weatherCondition).toEqual('stormy');
         })
-    });
-   
+    });  
 });

@@ -1,4 +1,3 @@
-let airport = [];
 let weather = ['stormy', 'sunny', 'sunny', 'sunny'];
 
 function randomWeather(weather) {
@@ -6,13 +5,13 @@ function randomWeather(weather) {
     return weather[Math.floor(index)];
 }
 
-function land(airport, plane, randomWeather, fullCapacity) {
+function land(airport, plane, randomWeather) {
     if (randomWeather(weather) === 'stormy') {
         console.log('The weather is stormy, we wont land')
-    } else if (airport.length === fullCapacity){
+    } else if (airport.length === airport.fullCapacity){
         console.log('We wont land, the airport is full')
     } else {
-        return airport.push(plane);
+        return airport.planes.push(plane);
     }
 }
 
@@ -26,7 +25,6 @@ function takeOff(airport, randomWeather) {
 }
 
 module.exports = {
-    airport,
     land,
     takeOff,
     randomWeather,

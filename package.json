@@ -19,5 +19,8 @@
   "devDependencies": {
     "jest": "^24.0.0",
     "jest-mock-console": "^0.4.2"
+  },
+  "dependencies": {
+    "uuid": "^3.3.2"
   }
 }

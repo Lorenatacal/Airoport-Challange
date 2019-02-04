@@ -1,16 +1,19 @@
 const land = require('./Airport.js').land;
 const takeOff = require('./Airport.js').takeOff;
 const randomWeather = require('./Airport.js').randomWeather;
+const uuidv1 = require('uuid/v1');
 
 describe("Airport", () => {
-    test('land() should add a new plane in the airport', () => {
-        let airportLuton = [];
+    test.only('land() should add a new plane in the airport', () => {
+        let airportLuton = {
+            planes: [],
+            fullCapacity: 5,
+        };
         let plane = {};
         let randomWeather = () => {};
-        let fullCapacity = 5;
 
-        land(airportLuton, plane, randomWeather, fullCapacity);
-        expect(airportLuton.length).toEqual(1);
+        land(airportLuton, plane, randomWeather);
+        expect(airportLuton.planes.length).toEqual(1);
     });
     test('land() should not allow a plane to land when the airport is full', () => {
         let randomWeather = () => {};

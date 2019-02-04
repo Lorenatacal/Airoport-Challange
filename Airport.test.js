@@ -4,7 +4,7 @@ const randomWeather = require('./Airport.js').randomWeather;
 const uuidv1 = require('uuid/v1');
 
 describe("Airport", () => {
-    test.only('land() should add a new plane in the airport', () => {
+    test('land() should add a new plane in the airport', () => {
         let airportLuton = {
             planes: [],
             fullCapacity: 5,
@@ -15,18 +15,16 @@ describe("Airport", () => {
         land(airportLuton, plane, randomWeather);
         expect(airportLuton.planes.length).toEqual(1);
     });
-    test('land() should not allow a plane to land when the airport is full', () => {
+    test.only('land() should not allow a plane to land when the airport is full', () => {
         let randomWeather = () => {};
-        let fullCapacity = 5;
+        let airportLuton = {
+            planes: [{}, {}, {}, {}, {}],
+            fullCapacity: 5,
+        };
         let plane = {};
-        let plane1 = {};
-        let plane2 = {};
-        let plane3 = {};
-        let plane4 = {};
-        let airportLuton = [plane, plane1, plane2, plane3, plane4];
         let consoleSpy = jest.spyOn(console, 'log')
 
-        land(airportLuton, plane, randomWeather, fullCapacity);
+        land(airportLuton, plane, randomWeather);
         expect(consoleSpy).toHaveBeenCalledWith('We wont land, the airport is full');
     })
     test('land() should not allow a plane to land when the weather is stormy', () => {

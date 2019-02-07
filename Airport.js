@@ -12,12 +12,12 @@ function land(airport, plane, randomWeather) {
         console.log('We wont land, the airport is full')
     } else if (airport.planes.includes(plane)) {
         console.log('This plane is already in the airport')
-    } else {
+    }else {
         return airport.planes.push(plane);
     }
 }
 
-function takeOff(airport, randomWeather) {
+function takeOff(airport, plane, randomWeather) {
     if (randomWeather(weather) === 'stormy') {
         console.log('It is stormy, we wont depart');
     } else {

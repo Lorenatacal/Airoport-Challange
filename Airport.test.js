@@ -40,16 +40,16 @@ describe("Airport", () => {
             land(airportLuton, plane, randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('The weather is stormy, we wont land')
         });
-        test.only('should not allow a plane that has landed to land again', () => {
+        test('should not allow a plane that has landed to land again', () => {
             let randomWeather = () => { };
-            let plane = {};     
+            let plane1 = {};     
             let airportLuton = {
-                planes: [plane],
+                planes: [plane1],
                 fullCapacity: 5,
             };
             let consoleSpy = jest.spyOn(console, 'log');
 
-            land(airportLuton, plane, randomWeather);
+            land(airportLuton, plane1, randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('This plane is already in the airport')
         })
     });
@@ -63,8 +63,8 @@ describe("Airport", () => {
             };
             let consoleSpy = jest.spyOn(console, 'log')
 
-            takeOff(airportLondon, randomWeather);
-            takeOff(airportLondon, randomWeather);
+            takeOff(airportLondon, plane, randomWeather);
+            takeOff(airportLondon, plane,  randomWeather);
             expect(airportLondon.planes.length).toEqual(1);
             expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
         })
@@ -77,8 +77,20 @@ describe("Airport", () => {
             };
             let consoleSpy = jest.spyOn(console, 'log')
 
-            takeOff(airportLondon, randomWeather);
+            takeOff(airportLondon, plane, randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('It is stormy, we wont depart')
+        })
+        test.only('should not allow a plane to takeOff when the plane it is not in the airport', () => {
+            let randomWeather = () => { };
+            let plane = {};
+            let airportLondon = {
+                planes: [plane],
+                fullCapacity: 5,
+            };
+            let consoleSpy = jest.spyOn(console, 'log')
+
+            takeOff(airportLondon, plane, randomWeather);
+            expect(consoleSpy).toHaveBeenCalledWith('This plane can not take Off as it is not in the airport')
         })
     });
     describe('randomWeather()', () => {

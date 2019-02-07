@@ -10,6 +10,8 @@ function land(airport, plane, randomWeather) {
         console.log('The weather is stormy, we wont land')
     } else if (airport.planes.length === airport.fullCapacity){
         console.log('We wont land, the airport is full')
+    } else if (airport.planes.includes(plane)) {
+        console.log('This plane is already in the airport')
     } else {
         return airport.planes.push(plane);
     }

@@ -20,7 +20,9 @@ function land(airport, plane, randomWeather) {
 function takeOff(airport, plane, randomWeather) {
     if (randomWeather(weather) === 'stormy') {
         console.log('It is stormy, we wont depart');
-    } else {
+    } else if (airport.planes.includes(plane) === false) {
+        console.log('This plane can not take Off as it is not in the airport')
+    }else {
         console.log('The plane has left');
         return airport.planes.shift();
     }

@@ -84,7 +84,7 @@ describe("Airport", () => {
             let randomWeather = () => { };
             let plane = {};
             let airportLondon = {
-                planes: [plane],
+                planes: [],
                 fullCapacity: 5,
             };
             let consoleSpy = jest.spyOn(console, 'log')

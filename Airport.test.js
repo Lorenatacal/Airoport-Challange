@@ -95,7 +95,7 @@ describe("Airport", () => {
         test.only('should not allow a plane that is flying to take off', () => {
             let randomWeather = () => { };
             let plane1 = {
-                planeFlying: true,
+                flying: true,
             };
             let airportLondon = {
                 planes: [plane1],

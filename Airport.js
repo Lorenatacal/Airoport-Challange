@@ -12,16 +12,20 @@ function land(airport, plane, randomWeather) {
         console.log('We wont land, the airport is full')
     } else if (airport.planes.includes(plane)) {
         console.log('This plane is already in the airport')
-    }else {
+    } else {
         return airport.planes.push(plane);
     }
 }
 
 function takeOff(airport, plane, randomWeather) {
+    // plane can't take off because it doesn't exist
+    if (airport.planes[0].flying === true) {
+        console.log('This plane can not take Off because it is already flying');
+    }
     if (randomWeather(weather) === 'stormy') {
         console.log('It is stormy, we wont depart');
     } else if (airport.planes.includes(plane) === false) {
-        console.log('This plane can not take Off as it is not in the airport')
+        console.log('This plane can not take Off as it is not in the airport');        
     } else {
         console.log('The plane has left');
         return airport.planes.shift();

@@ -92,7 +92,7 @@ describe("Airport", () => {
             takeOff(airportLondon, plane1, randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('This plane can not take Off as it is not in the airport')
         })
-        test.only('should not allow a plane that is flying to take off', () => {
+        test('should not allow a plane that is flying to take off', () => {
             let randomWeather = () => { };
             let plane1 = {
                 flying: true,
@@ -105,6 +105,26 @@ describe("Airport", () => {
 
             takeOff(airportLondon, plane1, randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('This plane can not take Off because it is already flying')
+        })
+        test('should allow a plane that is not flying to take off', () => {
+            let randomWeather = () => { };
+            let plane1 = {
+                flying: true,
+            };
+            let plane2 = {
+                flying: false,
+            };
+            let plane3 = {
+                flying: true,
+            };
+            let airportLondon = {
+                planes: [plane1, plane2, plane3],
+                fullCapacity: 5,
+            };
+            let consoleSpy = jest.spyOn(console, 'log')
+
+            takeOff(airportLondon, plane2, randomWeather);
+            expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
         })
     });
     describe('randomWeather()', () => {

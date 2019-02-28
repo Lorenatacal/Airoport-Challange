@@ -65,10 +65,21 @@ describe("Airport", () => {
 
             land(airportLuton, plane1, randomWeather);
             expect(airportLuton.planes.length).toEqual(1)
-
         })
-        // a plane that is flying can land
-        // a plane that is not flying should not be able to land
+        test('should not allow a plane that is not flying to land', () => {
+            let randomWeather = () => { };
+            let plane1 = {
+                flying: false,
+            };
+            let airportLuton = {
+                planes: [],
+                fullCapacity: 5,
+            };
+            let consoleSpy = jest.spyOn(console, 'log');
+
+            land(airportLuton, plane1, randomWeather);
+            expect(airportLuton.planes.length).toEqual(0);
+        })
     });
     describe('takeOff()', () => {
         test('should confirm when a plane takes off the airport', () => {

@@ -6,6 +6,10 @@ function randomWeather(weather) {
 }
 
 function land(airport, plane, randomWeather) {
+    const { planes } = airport;
+    if(plane.flying === false) {
+        return airport.planes;
+    }
     if (randomWeather(weather) === 'stormy') {
         console.log('The weather is stormy, we wont land')
     } else if (airport.planes.length === airport.fullCapacity){
@@ -16,7 +20,6 @@ function land(airport, plane, randomWeather) {
         return airport.planes.push(plane);
     }
 }
-
 function takeOff(airport, plane, randomWeather) {
     const { planes } = airport;
     if (plane.flying) {

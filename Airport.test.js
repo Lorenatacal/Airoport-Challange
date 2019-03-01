@@ -53,7 +53,7 @@ describe("Airport", () => {
             expect(consoleSpy).toHaveBeenCalledWith('This plane is already in the airport')
         });
         test('should allow a plane that is flying to land', () => {
-            let randomWeather = () => { };
+            let randomWeather = () => { }; 
             let plane1 = {
                 flying: true,
             };

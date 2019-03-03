@@ -1,3 +1,4 @@
+const uuidv1 = require('uuid/v1');
 let weather = ['stormy', 'sunny', 'sunny', 'sunny'];
 
 function randomWeather(weather) {
@@ -7,7 +8,7 @@ function randomWeather(weather) {
 
 function createPlane() {
    return {
-    id: '1234',
+    id: uuidv1(),
     flying: true,
     }
 }

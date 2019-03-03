@@ -6,8 +6,12 @@ function randomWeather(weather) {
 }
 
 function createPlane() {
-   
+   return {
+    id: '1234',
+    flying: true,
+    }
 }
+
 function land(airport, plane, randomWeather) {
     const { planes } = airport;
     if(plane.flying === false) {

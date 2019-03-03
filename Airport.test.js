@@ -1,8 +1,16 @@
 const land = require('./Airport.js').land;
 const takeOff = require('./Airport.js').takeOff;
 const randomWeather = require('./Airport.js').randomWeather;
+const createPlane = require('./Airport.js').createPlane;
 const uuidv1 = require('uuid/v1');
 
+test('createPlane() should create a new plane', () => {
+    let plane = createPlane();
+    
+    expect(typeof plane).toEqual('object');
+    expect(plane).toHaveProperty('id');
+    expect(plane.flying).toEqual(true);
+})
 describe("Airport", () => {
     describe('land()', () => {
         test('should add a new plane in the airport', () => {

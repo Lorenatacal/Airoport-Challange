@@ -5,6 +5,9 @@ function randomWeather(weather) {
     return weather[Math.floor(index)];
 }
 
+function createPlane() {
+   
+}
 function land(airport, plane, randomWeather) {
     const { planes } = airport;
     if(plane.flying === false) {
@@ -35,7 +38,12 @@ function takeOff(airport, plane, randomWeather) {
     }
 }
 
+// you need a function to create a plane and to create an airport with all the necessary information associated
+// TDD the creation of these functions
+// then refactor the tests to use the newly created functions
+
 module.exports = {
+    createPlane,
     land,
     takeOff,
     randomWeather,

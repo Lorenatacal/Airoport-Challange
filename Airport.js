@@ -13,6 +13,10 @@ function createPlane() {
     }
 }
 
+function createAirport() {
+
+}
+
 function land(airport, plane, randomWeather) {
     const { planes } = airport;
     if(plane.flying === false) {
@@ -49,6 +53,7 @@ function takeOff(airport, plane, randomWeather) {
 
 module.exports = {
     createPlane,
+    createAirport,
     land,
     takeOff,
     randomWeather,

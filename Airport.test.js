@@ -2,6 +2,7 @@ const land = require('./Airport.js').land;
 const takeOff = require('./Airport.js').takeOff;
 const randomWeather = require('./Airport.js').randomWeather;
 const createPlane = require('./Airport.js').createPlane;
+const createAirport = require('./Airport.js').createAirport;
 
 test('createPlane() should create a new plane', () => {
     let plane = createPlane();

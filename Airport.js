@@ -14,7 +14,10 @@ function createPlane() {
 }
 
 function createAirport() {
-
+    return {
+        planes: [],
+        capacity: 5,
+    }
 }
 
 function land(airport, plane, randomWeather) {

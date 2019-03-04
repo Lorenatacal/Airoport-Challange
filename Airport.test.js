@@ -5,11 +5,17 @@ const createPlane = require('./Airport.js').createPlane;
 
 test('createPlane() should create a new plane', () => {
     let plane = createPlane();
-    console.log(plane)
     
     expect(typeof plane).toEqual('object');
     expect(plane).toHaveProperty('id');
     expect(plane.flying).toEqual(true);
+})
+test.only('createAirport() should create a new airport', () => {
+    let airport = createAirport();
+
+    expect(typeof airport).toEqual('object');
+    expect(airport).toHaveProperty('planes');
+    expect(airport).toHaveProperty('capacity');
 })
 describe("Airport", () => {
     describe('land()', () => {

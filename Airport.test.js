@@ -11,7 +11,7 @@ test('createPlane() should create a new plane', () => {
     expect(plane).toHaveProperty('id');
     expect(plane.flying).toEqual(true);
 })
-test.only('createAirport() should create a new airport', () => {
+test('createAirport() should create a new airport', () => {
     let airport = createAirport();
 
     expect(typeof airport).toEqual('object');
@@ -21,11 +21,8 @@ test.only('createAirport() should create a new airport', () => {
 describe("Airport", () => {
     describe('land()', () => {
         test('should add a new plane in the airport', () => {
-            let airportLuton = {
-                planes: [],
-                fullCapacity: 5,
-            };
-            let plane = {};
+            let airportLuton = createAirport();
+            let plane = createPlane();
             let randomWeather = () => {};
 
             land(airportLuton, plane, randomWeather);
@@ -37,7 +34,7 @@ describe("Airport", () => {
                 planes: [{}, {}, {}, {}, {}],
                 fullCapacity: 5,
             };
-            let plane = {};
+            let plane = createPlane();
             let consoleSpy = jest.spyOn(console, 'log')
 
             land(airportLuton, plane, randomWeather);
@@ -45,11 +42,8 @@ describe("Airport", () => {
         })
         test('should not allow a plane to land when the weather is stormy', () => {
             let randomWeather = () => { return 'stormy' };
-            let plane = {};        
-            let airportLuton = {
-                planes: [],
-                fullCapacity: 5,
-            };
+            let airportLuton = createAirport();
+            let plane = createPlane();
             let consoleSpy = jest.spyOn(console, 'log');
 
             land(airportLuton, plane, randomWeather);
@@ -57,11 +51,9 @@ describe("Airport", () => {
         });
         test('should not allow a plane that has landed to land again', () => {
             let randomWeather = () => { };
-            let plane1 = {};     
-            let airportLuton = {
-                planes: [plane1],
-                fullCapacity: 5,
-            };
+            let plane1 = createPlane();    
+            let airportLuton = createAirport();
+            let planes = airportLuton.planes.push(plane1);
             let consoleSpy = jest.spyOn(console, 'log');
 
             land(airportLuton, plane1, randomWeather);
@@ -69,27 +61,19 @@ describe("Airport", () => {
         });
         test('should allow a plane that is flying to land', () => {
             let randomWeather = () => { }; 
-            let plane1 = {
-                flying: true,
-            };
-            let airportLuton = {
-                planes: [plane1],
-                fullCapacity: 5,
-            };
+            let plane = createPlane();
+            let airportLuton = createAirport();
+            let planes = airportLuton.planes.push(plane);
             let consoleSpy = jest.spyOn(console, 'log');
 
-            land(airportLuton, plane1, randomWeather);
+            land(airportLuton, plane, randomWeather);
             expect(airportLuton.planes.length).toEqual(1)
         })
         test('should not allow a plane that is not flying to land', () => {
             let randomWeather = () => { };
-            let plane1 = {
-                flying: false,
-            };
-            let airportLuton = {
-                planes: [],
-                fullCapacity: 5,
-            };
+            let plane1 = createPlane();
+            plane1.flying = false;
+            let airportLuton = createAirport();
             let consoleSpy = jest.spyOn(console, 'log');
 
             land(airportLuton, plane1, randomWeather);

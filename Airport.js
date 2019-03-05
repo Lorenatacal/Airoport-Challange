@@ -50,8 +50,7 @@ function takeOff(airport, plane, randomWeather) {
     }
 }
 
-// you need a function to create a plane and to create an airport with all the necessary information associated
-// TDD the creation of these functions
+
 // then refactor the tests to use the newly created functions
 
 module.exports = {

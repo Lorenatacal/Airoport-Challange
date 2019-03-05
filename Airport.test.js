@@ -83,25 +83,28 @@ describe("Airport", () => {
     describe('takeOff()', () => {
         test('should confirm when a plane takes off the airport', () => {
             let randomWeather = () => {};
-            let plane = {};
-            let airportLondon = {
-                planes: [plane, plane, plane],
-                fullCapacity: 5,
-            };
+            let plane = createPlane();
+            plane.flying = false;
+            let plane1 = createPlane();
+            plane1.flying = false;
+            let plane2 = createPlane();
+            plane2.flying = false;
+            let airportLondon = createAirport();
+            airportLondon.planes.push(plane, plane1, plane2)
+
             let consoleSpy = jest.spyOn(console, 'log')
 
             takeOff(airportLondon, plane, randomWeather);
-            takeOff(airportLondon, plane,  randomWeather);
+            takeOff(airportLondon, plane1,  randomWeather);
             expect(airportLondon.planes.length).toEqual(1);
             expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
         })
         test('should not allow plane to takeOff when the weather is stormy', () => {
             let randomWeather = () => { return 'stormy' };
-            let plane = {};
-            let airportLondon = {
-                planes: [plane],
-                fullCapacity: 5,
-            };
+            let plane = createPlane();
+            plane.flying = false;
+            let airportLondon = createAirport();
+            airportLondon.planes.push(plane);
             let consoleSpy = jest.spyOn(console, 'log')
 
             takeOff(airportLondon, plane, randomWeather);
@@ -109,11 +112,9 @@ describe("Airport", () => {
         })
         test('should not allow a plane to takeOff when the plane it is not in the airport', () => {
             let randomWeather = () => { };
-            let plane1 = {};
-            let airportLondon = {
-                planes: [],
-                fullCapacity: 5,
-            };
+            let plane1 = createPlane();
+            plane1.flying = false
+            let airportLondon = createAirport();
             let consoleSpy = jest.spyOn(console, 'log')
 
             takeOff(airportLondon, plane1, randomWeather);
@@ -121,13 +122,9 @@ describe("Airport", () => {
         })
         test('should not allow a plane that is flying to take off', () => {
             let randomWeather = () => { };
-            let plane1 = {
-                flying: true,
-            };
-            let airportLondon = {
-                planes: [plane1],
-                fullCapacity: 5,
-            };
+            let plane1 = createPlane();
+            let airportLondon = createAirport();
+            airportLondon.planes.push(plane1)
             let consoleSpy = jest.spyOn(console, 'log')
 
             takeOff(airportLondon, plane1, randomWeather);
@@ -135,19 +132,12 @@ describe("Airport", () => {
         })
         test('should allow a plane that is not flying to take off', () => {
             let randomWeather = () => { };
-            let plane1 = {
-                flying: true,
-            };
-            let plane2 = {
-                flying: false,
-            };
-            let plane3 = {
-                flying: true,
-            };
-            let airportLondon = {
-                planes: [plane1, plane2, plane3],
-                fullCapacity: 5,
-            };
+            let plane1 = createPlane();
+            let plane2 = createPlane();
+            plane2.flying = false;
+            let plane3 = createPlane();
+            let airportLondon = createAirport();
+            airportLondon.planes.push(plane1, plane2, plane3)
             let consoleSpy = jest.spyOn(console, 'log')
 
             takeOff(airportLondon, plane2, randomWeather);

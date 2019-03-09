@@ -18,6 +18,13 @@ test('createAirport() should create a new airport', () => {
     expect(airport).toHaveProperty('planes');
     expect(airport).toHaveProperty('capacity');
 })
+test('createAirport() should override default capacity', () => {
+    let expectedCapacity = 10;
+    let airport = createAirport(expectedCapacity);
+    let { capacity } = airport;
+
+    expect(capacity).toEqual(expectedCapacity);
+})
 describe("Airport", () => {
     describe('land()', () => {
         test('should add a new plane in the airport', () => {
@@ -28,7 +35,7 @@ describe("Airport", () => {
             land(airportLuton, plane, randomWeather);
             expect(airportLuton.planes.length).toEqual(1);
         });
-        test('should not allow a plane to land when the airport is full', () => {
+        test('should not allow a plane to land when the airport is full', () => {   
             let randomWeather = () => {};
             let plane = createPlane();
             let plane1 = createPlane();

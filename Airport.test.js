@@ -92,6 +92,7 @@ describe("Airport", () => {
 
             land(airportLuton, plane1, randomWeather);
             expect(airportLuton.planes.length).toEqual(0);
+            expect(consoleSpy).toHaveBeenCalledWith('This plane can not land because it is not flying')
         })
     });
     describe('takeOff()', () => {

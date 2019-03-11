@@ -22,18 +22,19 @@ function createAirport(capacity = 5) {
 
 function land(airport, plane, randomWeather) {
     const { planes } = airport;
-    if(plane.flying === false) {
-        return airport.planes;
-    }
     if (airport.planes.length === airport.capacity){
         console.log('We wont land, the airport is full')
     } else if (randomWeather(weather) === 'stormy') {
         console.log('The weather is stormy, we wont land')
     } else if (airport.planes.includes(plane)) {
         console.log('This plane is already in the airport')
+    } else if (plane.flying === false) {
+        console.log('This plane can not land because it is not flying')
+        return airport.planes;
     } else {
         plane.flying = false;
-        return airport.planes.push(plane);
+        airport.planes.push(plane);
+        return airport;
     }
 }
 function takeOff(airport, plane, randomWeather) {
@@ -48,7 +49,8 @@ function takeOff(airport, plane, randomWeather) {
     } else {
         plane.flying = true;
         console.log('The plane has left');
-        return planes.shift();
+        planes.shift();
+        return airport;
     }
 }
 

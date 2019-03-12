@@ -38,7 +38,7 @@ function land(airport, plane, randomWeather) {
     }
 }
 function takeOff(airport, plane, randomWeather) {
-    const { planes } = airport;
+    let  { planes } = airport;
     if (plane.flying) {
         return console.log('This plane can not take Off because it is already flying');
     }
@@ -49,7 +49,7 @@ function takeOff(airport, plane, randomWeather) {
     } else {
         plane.flying = true;
         console.log('The plane has left');
-        planes.shift();
+        airport.planes = planes.filter(airPlane => airPlane !== plane);
         return airport;
     }
 }

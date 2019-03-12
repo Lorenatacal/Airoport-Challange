@@ -96,7 +96,7 @@ describe("Airport", () => {
         })
     });
     describe('takeOff()', () => {
-        test('should confirm when a plane takes off the airport', () => {
+        test.only('should remove a specific plane from the airport', () => {
             let randomWeather = () => {};
             let plane = createPlane();
             plane.flying = false;
@@ -108,10 +108,11 @@ describe("Airport", () => {
             airportLondon.planes.push(plane, plane1, plane2)
 
             let consoleSpy = jest.spyOn(console, 'log')
-
-            takeOff(airportLondon, plane, randomWeather);
-            takeOff(airportLondon, plane1,  randomWeather);
-            expect(airportLondon.planes.length).toEqual(1);
+            takeOff(airportLondon, plane2, randomWeather);
+            console.log(airportLondon, 'air');
+            
+            expect(airportLondon.planes.length).toEqual(2);
+            expect(airportLondon.planes.includes(plane2)).toEqual(false);
             expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
         })
         test('should not allow plane to takeOff when the weather is stormy', () => {

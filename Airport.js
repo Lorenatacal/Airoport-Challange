@@ -22,30 +22,52 @@ function createAirport(capacity = 5) {
 
 function land(airport, plane, randomWeather) {
     const { planes } = airport;
-    if (airport.planes.length === airport.capacity){
-        console.log('We wont land, the airport is full')
-    } else if (randomWeather(weather) === 'stormy') {
+    // checkCapacity();
+    if (planes.includes(plane)) {
+        console.log('This plane is already in the airport');
+        return airport;
+    }
+    if (plane.flying === false) {
+        console.log('This plane can not land because it is not flying');
+        return planes;
+    }
+    if (planes.length === airport.capacity){
+        console.log('We wont land, the airport is full');
+        return airport;
+    }
+    if (planes.length === airport.capacity){
+        console.log('We wont land, the airport is full');
+        return airport;
+    }
+    if (randomWeather(weather) === 'stormy') {
         console.log('The weather is stormy, we wont land')
-    } else if (airport.planes.includes(plane)) {
-        console.log('This plane is already in the airport')
-    } else if (plane.flying === false) {
-        console.log('This plane can not land because it is not flying')
-        return airport.planes;
+        return airport
     } else {
         plane.flying = false;
-        airport.planes.push(plane);
+        planes.push(plane);
         return airport;
     }
 }
+
+// function checkCapacity(airport) {
+//     if (airport.planes.length === airport.capacity){
+//         console.log('We wont land, the airport is full')
+//     }
+//     return;
+// }
 function takeOff(airport, plane, randomWeather) {
     let  { planes } = airport;
     if (plane.flying) {
-        return console.log('This plane can not take Off because it is already flying');
+        console.log('This plane can not take Off because it is already flying');
+        return airport;
+    }
+    if (planes.includes(plane) === false) {
+        console.log('This plane can not take Off as it is not in the airport');
+        return airport
     }
     if (randomWeather(weather) === 'stormy') {
         console.log('It is stormy, we wont depart');
-    } else if (planes.includes(plane) === false) {
-        console.log('This plane can not take Off as it is not in the airport');        
+        return airport;      
     } else {
         plane.flying = true;
         console.log('The plane has left');
@@ -53,9 +75,6 @@ function takeOff(airport, plane, randomWeather) {
         return airport;
     }
 }
-
-
-// then refactor the tests to use the newly created functions
 
 module.exports = {
     createPlane,

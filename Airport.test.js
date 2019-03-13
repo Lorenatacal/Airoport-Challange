@@ -96,7 +96,7 @@ describe("Airport", () => {
         })
     });
     describe('takeOff()', () => {
-        test.only('should remove a specific plane from the airport', () => {
+        test('should remove a specific plane from the airport', () => {
             let randomWeather = () => {};
             let plane = createPlane();
             plane.flying = false;

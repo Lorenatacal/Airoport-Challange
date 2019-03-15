@@ -52,6 +52,7 @@ describe("Airport", () => {
             land(airportLuton, plane3, randomWeather);
             land(airportLuton, plane4, randomWeather);
             land(airportLuton, plane5, randomWeather);
+            expect(airportLuton.planes.length).toEqual(5);
             expect(consoleSpy).toHaveBeenCalledWith('We wont land, the airport is full');
         })
         test('should not allow a plane to land when the weather is stormy', () => {

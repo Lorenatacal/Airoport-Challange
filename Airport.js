@@ -70,23 +70,45 @@ function airportHasPlane(airport, plane) {
 
 function takeOff(airport, plane, randomWeather) {
     let  { planes } = airport;
+    if(planeFlying(airport, plane)) return airport;
+    if(planeNotInAirport(airport, plane)) return airport;
+    if(checkWeatherStormy(randomWeather)) return airport;
+    
+    return planeHasTakeOff(airport, plane, randomWeather);
+}
+
+function planeFlying (airport, plane) {
+    const { planes } = airport;
+    const { id, flying } = plane;
     if (plane.flying) {
         console.log('This plane can not take Off because it is already flying');
-        return airport;
+        return true;
     }
+}
+
+function planeNotInAirport(airport, plane) {
+    const { planes } = airport;
+    const { id, flying } = plane;
     if (planes.includes(plane) === false) {
         console.log('This plane can not take Off as it is not in the airport');
-        return airport
+        return true;
     }
-    if (randomWeather(weather) === 'stormy') {
+}
+
+function checkWeatherStormy(weatherRandom) {
+    if (weatherRandom() === 'stormy') {
         console.log('It is stormy, we wont depart');
-        return airport;      
-    } else {
-        plane.flying = true;
-        console.log('The plane has left');
-        airport.planes = planes.filter(airPlane => airPlane !== plane);
-        return airport;
-    }
+        return true;
+    }  
+}
+
+function planeHasTakeOff(airport, plane, randomWeather) {
+    const { planes } = airport;
+    const { id, flying } = plane;
+    plane.flying = true;
+    console.log('The plane has left');
+    airport.planes = planes.filter(airPlane => airPlane !== plane);
+    return airport;
 }
 
 module.exports = {

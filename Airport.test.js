@@ -43,6 +43,7 @@ describe("Airport", () => {
             let plane3 = createPlane();
             let plane4 = createPlane();
             let plane5 = createPlane();
+            // refactor this to use a loop to generate the planes
             let airportLuton = createAirport();
             let consoleSpy = jest.spyOn(console, 'log');
 
@@ -52,6 +53,7 @@ describe("Airport", () => {
             land(airportLuton, plane3, randomWeather);
             land(airportLuton, plane4, randomWeather);
             land(airportLuton, plane5, randomWeather);
+            //  refactor this to use a loop to call land
             expect(airportLuton.planes.length).toEqual(5);
             expect(consoleSpy).toHaveBeenCalledWith('We wont land, the airport is full');
         })
@@ -105,12 +107,14 @@ describe("Airport", () => {
             plane1.flying = false;
             let plane2 = createPlane();
             plane2.flying = false;
+            // make this dry, use a loop to generate and set the flag
+
             let airportLondon = createAirport();
             airportLondon.planes.push(plane, plane1, plane2)
 
             let consoleSpy = jest.spyOn(console, 'log')
             takeOff(airportLondon, plane2, randomWeather);
-            console.log(airportLondon, 'air');
+            console.log(airportLondon, 'air'); // don't leave redundant console logs in the code
             
             expect(airportLondon.planes.length).toEqual(2);
             expect(airportLondon.planes.includes(plane2)).toEqual(false);

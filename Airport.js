@@ -22,7 +22,7 @@ function createAirport(capacity = 5) {
 
 function land(airport, plane, randomWeather) {
     if (airportHasPlane(airport, plane)) return airport;
-    if (isPlaneFlying(plane)) return airport;
+    if (isPlaneFlying(plane, land, false)) return airport;
     if (checkCapacity(airport)) return airport;
     if (checkWeather(randomWeather)) return airport; 
 
@@ -37,11 +37,15 @@ function addPlaneToAirport(airport, plane) {
     return airport;
 }
 
-function isPlaneFlying(plane) {
+function isPlaneFlying(plane, land, takeOff) {
     const { id, flying } = plane;
-    if (plane.flying === false) {
+    if (land && flying === false) {
         console.log('This plane can not land because it is not flying');
         return true;
+    }
+    if (takeOff && flying) {
+     console.log('This plane can not take Off because it is already flying');
+     return true;
     }
 }
 
@@ -69,22 +73,15 @@ function airportHasPlane(airport, plane) {
 }
 
 function takeOff(airport, plane, randomWeather) {
-    let  { planes } = airport;
-    if(planeFlying(airport, plane)) return airport;
+
+    if(isPlaneFlying(plane, false, takeOff)) return airport;
     if(planeNotInAirport(airport, plane)) return airport;
     if(checkWeatherStormy(randomWeather)) return airport;
-    
-    return planeHasTakeOff(airport, plane, randomWeather);
+
+    return planeHasTakenOff(airport, plane, randomWeather);
 }
 
-function planeFlying (airport, plane) {
-    const { planes } = airport;
-    const { id, flying } = plane;
-    if (plane.flying) {
-        console.log('This plane can not take Off because it is already flying');
-        return true;
-    }
-}
+
 
 function planeNotInAirport(airport, plane) {
     const { planes } = airport;
@@ -102,7 +99,7 @@ function checkWeatherStormy(weatherRandom) {
     }  
 }
 
-function planeHasTakeOff(airport, plane, randomWeather) {
+function planeHasTakenOff(airport, plane, randomWeather) {
     const { planes } = airport;
     const { id, flying } = plane;
     plane.flying = true;

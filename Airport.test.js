@@ -44,13 +44,10 @@ describe("Airport", () => {
             });
             let consoleSpy = jest.spyOn(console, 'log');
 
-            land(airportLuton, planes[0], randomWeather);
-            land(airportLuton, planes[1], randomWeather);
-            land(airportLuton, planes[2], randomWeather);
-            land(airportLuton, planes[3], randomWeather);
-            land(airportLuton, planes[4], randomWeather);
-            land(airportLuton, planes[5], randomWeather);
-            //  refactor this to use a loop to call land
+            planes.forEach(function(elem) {
+                land(airportLuton, elem, randomWeather);
+            });
+           
             expect(airportLuton.planes.length).toEqual(5);
             expect(consoleSpy).toHaveBeenCalledWith('We wont land, the airport is full');
         })

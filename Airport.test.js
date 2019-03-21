@@ -4,6 +4,15 @@ const randomWeather = require('./Airport.js').randomWeather;
 const createPlane = require('./Airport.js').createPlane;
 const createAirport = require('./Airport.js').createAirport;
 
+function createPlanes(n) {
+    let planes = [];
+    let array = new Array(n);
+    for(var i = 0; i <= array.length; i++) {
+        planes.push(createPlane());
+    };
+    return planes;
+}
+
 test('createPlane() should create a new plane', () => {
     let plane = createPlane();
     
@@ -38,10 +47,8 @@ describe("Airport", () => {
         test('should not allow a plane to land when the airport is full', () => {   
             let randomWeather = () => {};
             let airportLuton = createAirport();
-            let planes = [];
-            [1, 2, 3, 4, 5, 6].forEach(function(elem){
-                planes.push(createPlane());
-            });
+            let planes = createPlanes(6);
+
             let consoleSpy = jest.spyOn(console, 'log');
 
             planes.forEach(function(elem) {

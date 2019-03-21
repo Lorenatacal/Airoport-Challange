@@ -6,10 +6,10 @@ const createAirport = require('./Airport.js').createAirport;
 
 function createPlanes(n) {
     let planes = [];
-    let array = new Array(n);
-    for(var i = 0; i <= array.length; i++) {
+    let array = Array.apply(null, Array(n));
+    array.forEach(function(elem) {
         planes.push(createPlane());
-    };
+    });
     return planes;
 }
 
@@ -48,7 +48,6 @@ describe("Airport", () => {
             let randomWeather = () => {};
             let airportLuton = createAirport();
             let planes = createPlanes(6);
-
             let consoleSpy = jest.spyOn(console, 'log');
 
             planes.forEach(function(elem) {

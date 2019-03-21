@@ -103,7 +103,6 @@ describe("Airport", () => {
             let randomWeather = () => {};
             let planes = createPlanes(3);
             planes[2].flying = false;
-            // make this dry, use a loop to generate and set the flag
 
             let airportLondon = createAirport();
             airportLondon.planes.push(planes[0], planes[1], planes[2])
@@ -146,17 +145,15 @@ describe("Airport", () => {
             takeOff(airportLondon, plane1, randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('This plane can not take Off because it is already flying')
         })
-        test('should allow a plane that is not flying to take off', () => {
+        test('', () => {
             let randomWeather = () => { };
-            let plane1 = createPlane();
-            let plane2 = createPlane();
-            plane2.flying = false;
-            let plane3 = createPlane();
+            let planes = createPlanes(3);
+            planes[2].flying = false;
             let airportLondon = createAirport();
-            airportLondon.planes.push(plane1, plane2, plane3)
+            airportLondon.planes.push(planes[0], planes[1], planes[2])
             let consoleSpy = jest.spyOn(console, 'log')
 
-            takeOff(airportLondon, plane2, randomWeather);
+            takeOff(airportLondon, planes[2], randomWeather);
             expect(consoleSpy).toHaveBeenCalledWith('The plane has left');
         })
     });
